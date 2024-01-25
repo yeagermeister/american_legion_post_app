@@ -1,0 +1,81 @@
+import React, { useState, useEffect } from "react";
+import { Button, Form, Alert } from "react-bootstrap";
+import Collapsible from 'react-collapsible';
+import { updateNews } from "../../utils/API";
+
+const EditNews = ( { id } ) => {
+
+    const [newsItems, setNewsItems] = useState(
+        {
+            id: id,
+            title: '',
+            summary: '',
+        }
+    );
+    const [validated, setValidated] = useState(false);
+    const [showAlert, setShowAlert] = useState(false);
+
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+        try {
+            console.log(newsItems);
+            const updatedNewsItems = { ...newsItems, date: new Date() };
+            setNewsItems(updatedNewsItems);
+            console.log(newsItems);
+            const response = await updateNews(newsItems);
+            const data = await response.json();
+            console.log(data);
+            window.location.reload();
+        } catch (err) {
+            console.error(err);
+        }
+    }
+
+    const handleInputChange = (event) => {
+        const { name, value } = event.target;
+        setNewsItems({ ...newsItems  , [name]: value});
+    }
+
+    return (
+        <>
+        <Collapsible trigger="Edit Article" className="h2" triggerOpenedClassName="h2">
+            <Form onSubmit={handleSubmit} >
+                <Alert diismissible onClose={() => setShowAlert(false)} show={showAlert} variant='danger'>
+                    Something went wroing
+                </Alert>
+                <Form.Group>
+                    <Form.Label>Title</Form.Label>
+                    <Form.Control 
+                        type="text" 
+                        name='title'
+                        onChange={handleInputChange} 
+                        placeholder="Enter Title" 
+                    />
+                    <Form.Control.Feedback type="invalid">
+                        Please enter a title.
+                    </Form.Control.Feedback>
+                </Form.Group>
+                <Form.Group>
+                    <Form.Label>Summary</Form.Label>
+                    <Form.Control 
+                        type="text" 
+                        name='summary'
+                        onChange={handleInputChange} 
+                        placeholder="Enter Summary" 
+                    />
+                    <Form.Control.Feedback type="invalid">
+                        Please enter a summary.
+                    </Form.Control.Feedback>
+                </Form.Group>
+                <Button variant="primary" type="submit">
+                    Submit
+                </Button>
+            </Form>
+        </Collapsible>
+        </>
+    );
+};
+
+export default EditNews;
+
+

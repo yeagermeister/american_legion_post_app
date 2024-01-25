@@ -1,0 +1,70 @@
+:root {
+  --red: #B31942;
+  --white: #ffffff;
+  --blue: #0a3161;
+}
+
+h1 {
+  font-size: 3rem;
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+} 
+
+.navbar {
+  background-color: var(--blue);
+  color: var(--white) !important;
+}
+
+.nav-link {
+  color: #ffffff !important;
+  font-size: x-large !important;
+  text-wrap: nowrap !important;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  margin-left: 5%;
+  text-decoration: none !important;
+  background-color: var(--red) !important;
+  border-radius: 10px;
+}
+
+.redContainer {
+  color: #ffffff !important;
+  text-decoration: none !important;
+  background-color: var(--red) !important;
+  border-radius: 10px;
+  padding: 1%;
+  margin: 1%;
+}
+
+.blueContainer {
+  color: #ffffff !important;
+  text-decoration: none !important;
+  background-color: var(--blue) !important;
+  border-radius: 10px;
+  padding: 1%;
+  margin: 1%;
+
+}
+.myContainer {
+  margin: 2%;
+  padding: 1%;
+}
+
+.redButton {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-left: 10px;
+  margin-right: 10px;
+  background-color: var(--red) !important;
+  border-color: var(--white) !important;
+}
+
+.blueButton {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-left: 10px;
+  margin-right: 10px;
+  background-color: var(--blue) !important;
+  border-color: var(--white) !important;
+}
