@@ -44,6 +44,7 @@ module.exports = {
   // login a user, sign a token, and send it back
   // {body} is destructured req.body
   async login({ body }, res) {
+    console.log("trying to log in: ", body);
     const user = await User.findOne({ $or: [{ username: body.username }, { email: body.email }] });
     if (!user) {
       return res.status(400).json({ message: "Can't find this user" });

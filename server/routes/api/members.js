@@ -9,16 +9,16 @@ const {
 } = require('../../controllers/memberController');
 
 //import auth middleware so we can lockdown routes.
-const { authMiddleware } = require('../../helpers/auth');
+const { authMiddleware, adminMiddleware } = require('../../helpers/auth');
 
 // /api/members
 router.route('/')
-get(authMiddleware,(req, res) => {getMembers (req, res);})
-.post(createMember);
+.get(authMiddleware, adminMiddleware, (req, res) => {getMembers (req, res);})
+.post(authMiddleware, adminMiddleware, (req, res) => {createMember (req, res);});
 
 // /api/members/:memberId
 router.route('/:memberId')
-.delete(deleteMember);
+.delete(authMiddleware, adminMiddleware, (req, res) => {deleteMember (req, res);});
 
 router.get('/:memberID', async (req, res) => {
   try {
@@ -32,20 +32,20 @@ router.get('/:memberID', async (req, res) => {
   }
 });
 
-router.put('/:memberID', async (req, res) => {
-  try {
-    const member = await Member.findOneAndUpdate(
-      { memberID: req.params.memberID },
-      req.body,
-      { new: true, upsert: true, runValidators: true });
-    if (!member) {
-      return res.status(404).json({ message: 'Member not found' });
-    }
-    res.json(member);
-  }
-  catch (err) {
-    res.status(500).json({ message: err.message });
-  }
-});
+// router.put('/:memberID', async (req, res) => {
+//   try {
+//     const member = await Member.findOneAndUpdate(
+//       { memberID: req.params.memberID },
+//       req.body,
+//       { new: true, upsert: true, runValidators: true });
+//     if (!member) {
+//       return res.status(404).json({ message: 'Member not found' });
+//     }
+//     res.json(member);
+//   }
+//   catch (err) {
+//     res.status(500).json({ message: err.message });
+//   }
+// });
 
 module.exports = router;

@@ -32,4 +32,11 @@ module.exports = {
       const payload = { email, username, _id, role, org, position };
       return jwt.sign({ data: payload }, secret, { expiresIn: expiration });
     },
+    adminMiddleware: function (req, res, next) {
+      if (req.user && req.user.role === 'admin') {
+          next();
+      } else {
+          res.status(403).send('You must be an admin to access this resource.');
+      }
+  }
   };

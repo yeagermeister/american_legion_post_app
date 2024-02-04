@@ -1,5 +1,5 @@
 {
-  "name": "getoutdoorsfla",
+  "name": "american_legion_post_app",
   "version": "0.1.0",
   "description": "",
   "main": "server/server.js",
@@ -18,3 +18,4 @@
     "body-parser": "^1.20.2"
   }
 }
+  

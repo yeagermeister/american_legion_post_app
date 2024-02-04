@@ -1,6 +1,7 @@
 //define the npm packages we are using
 const express = require('express');
 const cors = require('cors');
+const path = require('path');
 const bodyParser = require('body-parser');
 
 

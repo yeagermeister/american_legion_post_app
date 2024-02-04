@@ -2,8 +2,8 @@ import React, {useState} from "react";
 import { Form, Button, Alert } from "react-bootstrap";
 import auth from "../../utils/auth";
 import { createCalendar } from "../../utils/API";
-import "flatpickr/dist/themes/material_green.css";
-import Flatpickr from "react-flatpickr";
+// import "flatpickr/dist/themes/material_green.css";
+// import Flatpickr from "react-flatpickr";
 
 
 const CreateCalendar = () => {
