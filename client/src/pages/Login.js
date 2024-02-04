@@ -1,13 +1,14 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { Form, Button, Alert } from 'react-bootstrap';
 import { Link } from "react-router-dom";
 import { loginUser } from '../utils/API';
-import Auth from '../utils/auth';
+import { AuthContext } from '../utils/authContext';
 
 const Login = () => {
   const [userFormData, setUserFormData] = useState({ email: '', password: '' });
   const [validated] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
+  const { login } = useContext(AuthContext);
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -26,13 +27,13 @@ const Login = () => {
 
     try {
       const response = await loginUser(userFormData);
-
-      if (!response.ok) {
+      if (!(response.status >= 200 && response.status < 300)) {
         throw new Error('something went wrong!');
       }
 
-      const { token, user } = await response.json();
-      Auth.login(token);
+      const { token, user } = response.data;
+      console.log(token, user);
+      login(token);
     } catch (err) {
       console.error(err);
       setShowAlert(true);

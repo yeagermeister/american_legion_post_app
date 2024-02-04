@@ -8,6 +8,8 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 //utils imports
 import { SiteProvider } from './utils/SiteContext';
+import { AuthProvider } from './utils/authContext';
+
 
 //component imports
 import NavUI from './components/navbar/Navbar';
@@ -30,6 +32,7 @@ function App() {
   return (
     <SiteProvider>
       <Router>
+        <AuthProvider>
         <NavUI/>
           <Routes>
             <Route exact path='/' element={<Home />} />
@@ -44,7 +47,9 @@ function App() {
             <Route exact path='/gallery/:id' element={<Event />} />
             <Route path='*' element={<NotFound />}/>
           </Routes>
+          </AuthProvider>
       </Router>
+
     </SiteProvider>
   );
 }

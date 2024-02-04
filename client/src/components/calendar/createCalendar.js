@@ -2,12 +2,14 @@ import React, {useState} from "react";
 import { Form, Button, Alert } from "react-bootstrap";
 import auth from "../../utils/auth";
 import { createCalendar } from "../../utils/API";
-// import "flatpickr/dist/themes/material_green.css";
-// import Flatpickr from "react-flatpickr";
-
 
 const CreateCalendar = () => {
-    const [calendarItems, setCalendarItems] = useState([]);
+    const [calendarItems, setCalendarItems] = useState({
+        title: "",
+        summary: "",
+        date: "",
+        time: ""
+    });
     const [showAlert, setShowAlert] = useState(false);
 
     const handleSubmit = async (event) => {
@@ -16,7 +18,7 @@ const CreateCalendar = () => {
             const updatedCalendarItems = { ...calendarItems};
             console.log(updatedCalendarItems);
             const response = await createCalendar(updatedCalendarItems);
-            const data = await response.json();
+            const data = response;
             window.location.reload();
         } catch (err) {
             console.error(err);

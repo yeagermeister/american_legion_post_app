@@ -9,8 +9,6 @@ const DeleteNews = ( { id } ) => {
         event.preventDefault();
         try {
             const response = await deleteNews(id);
-            const data = await response.json();
-            console.log(data);
             window.location.reload();
         } catch (err) {
             console.error(err);
@@ -18,11 +16,15 @@ const DeleteNews = ( { id } ) => {
     }
 
     return (
-        <>
-                <Button variant="primary" type="submit" onClick={handleDelete}>
-                    Delete Article
-                </Button>
-        </>
+        <div className="d-flex justify-content-center redContainer">
+            <Button 
+                className='blueButton'
+                variant="primary" 
+                type="submit" 
+                onClick={handleDelete}>
+                Delete Article
+            </Button>
+        </div>
     )
 };
 

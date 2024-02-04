@@ -1,269 +1,113 @@
+import axios from 'axios';
+
+const API_URL = 'http://64.111.99.88:3001';
 
 // User related API calls
 export const getMemberId = (memberId) => {
-  return fetch(`/api/members/${memberId}`, {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  });
+  return axios.get(`${API_URL}/api/members/${memberId}`);
 };
 
 export const getMembers = () => {
-  return fetch('/api/members', {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  });
+  return axios.get(`${API_URL}/api/members`);
 };
 
 export const createUser = (userData) => {
-  return fetch('/api/users', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(userData),
-  });
+  return axios.post(`${API_URL}/api/users`, userData);
 };
 
 export const loginUser = (userData) => {
-  return fetch('/api/users/login', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(userData),
-  });
+  console.log("userData: ", userData);
+  return axios.post(`${API_URL}/api/users/login`, userData);
 };
 
 // Menu related API calls
 export const getTodaysMenu = () => {
-  return fetch('/api/menu/today', {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  });
+  return axios.get(`${API_URL}/api/menu/today`);
 };
 
 export const deleteSpecial = (id) => {
-  return fetch(`/api/menu/${id}`, {
-    method: 'DELETE',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  });
+  return axios.delete(`${API_URL}/api/menu/${id}`);
 };
 
 export const createSpecial = (specialData) => {
-  return fetch('/api/menu', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(specialData),
-  });
+  return axios.post(`${API_URL}/api/menu`, specialData);
 };
 
 export const getSpecials = () => {
-  return fetch('/api/menu', {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  });
+  return axios.get(`${API_URL}/api/menu`);
 };
 
 // News related API calls
 export const getNews = () => {
-  return fetch('/api/news', {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  });
+  return axios.get(`${API_URL}/api/news`);
 };
 
 export const createNews = (newsData) => {
-  return fetch('/api/news', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(newsData),
-  });
+  return axios.post(`${API_URL}/api/news`, newsData);
 };
 
 export const updateNews = (newsData) => { 
-  console.log(newsData);
-  return fetch(`/api/news/${newsData.id}`, {
-    method: 'PUT',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(newsData),
-  });
+  return axios.put(`${API_URL}/api/news/${newsData.id}`, newsData);
 };
 
+// News related API calls
 export const deleteNews = (id) => {
-  return fetch(`/api/news/${id}`, {
-    method: 'DELETE',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  });
+  return axios.delete(`${API_URL}/api/news/${id}`);
 };
 
 // Calendar related API calls
 export const getCalendar = () => {
-  return fetch('/api/calendar', {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  });
+  return axios.get(`${API_URL}/api/calendar`);
 };
 
 export const createCalendar = (calendarData) => {
-  return fetch('/api/calendar', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(calendarData),
-  });
+  console.log("calendarData: ", calendarData);  
+  return axios.post(`${API_URL}/api/calendar`, calendarData);
 };
 
 export const deleteCalendar = (id) => {
-  return fetch(`/api/calendar/${id}`, {
-    method: 'DELETE',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  });
+  return axios.delete(`${API_URL}/api/calendar/${id}`);
 };
 
 // Gallery related API calls
 export const getGallery = () => {
-  return fetch('/api/gallery', {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  });
+  return axios.get(`${API_URL}/api/gallery`);
 };
 
 export const createGallery = (galleryData) => {
-  console.log(...galleryData);
-  return fetch('/api/gallery', {
-    method: 'POST',
+  console.log("galleryData: ", galleryData);
+  return axios.post(`${API_URL}/api/gallery`, galleryData, {
     headers: {
-      'Content-Type': 'application/json',
+        'Content-Type': 'multipart/form-data',
     },
-    body: galleryData,
   });
 };
 
 export const updateGallery = (galleryData) => {
-  return fetch(`/api/gallery/${galleryData._id}`, {
-    method: 'PUT',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(galleryData),
-  });
+  return axios.put(`${API_URL}/api/gallery/${galleryData._id}`, galleryData);
 };
 
 export const deleteGallery = (id) => {
-  return fetch(`/api/gallery/${id}`, {
-    method: 'DELETE',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  });
+  return axios.delete(`${API_URL}/api/gallery/${id}`);
 };
 
 export const getGalleryItem = (id) => {
-  return fetch(`/api/gallery/${id}`, {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  });
+  return axios.get(`${API_URL}/api/gallery/${id}`);
 };
 
 export const addReaction = (galleryId, galleryData) => {
-  console.log(galleryId, galleryData);
-  return fetch(`/api/gallery/${galleryId}/reaction`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(galleryData),
-  });
+
+  return axios.post(`${API_URL}/api/gallery/${galleryId}/reaction`, galleryData);
 };
 
 export const deleteReaction = (galleryId, reactionId) => {
-  return fetch(`/api/gallery/${galleryId}/reaction/${reactionId}`, {
-    method: 'DELETE',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  });
-}
-
+  return axios.delete(`${API_URL}/api/gallery/${galleryId}/reaction/${reactionId}`);
+};
 
 // TV related API calls
 export const getTV = () => { 
-  return fetch('/api/tv', {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  });
+  return axios.get(`${API_URL}/api/tv`);
 };
 
 
 
-
-
-
-// // save book data for a logged in user
-// export const saveBook = (bookData, token) => {
-//   return fetch('/api/users', {
-//     method: 'PUT',
-//     headers: {
-//       'Content-Type': 'application/json',
-//       authorization: `Bearer ${token}`,
-//     },
-//     body: JSON.stringify(bookData),
-//   });
-// };
-
-// // route to get logged in user's info (needs the token)
-// export const getMe = (token) => {
-//   return fetch('/api/users/me', {
-//     headers: {
-//       'Content-Type': 'application/json',
-//       authorization: `Bearer ${token}`,
-//     },
-//   });
-// };
-
-// // remove saved book data for a logged in user
-// export const deleteBook = (bookId, token) => {
-//   return fetch(`/api/users/books/${bookId}`, {
-//     method: 'DELETE',
-//     headers: {
-//       authorization: `Bearer ${token}`,
-//     },
-//   });
-// };
-
-// // make a search to google books api
-// // https://www.googleapis.com/books/v1/volumes?q=harry+potter
-// export const searchGoogleBooks = (query) => {
-//   return fetch(`https://www.googleapis.com/books/v1/volumes?q=${query}`);
-// };

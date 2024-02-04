@@ -1,16 +1,19 @@
-// import { useState } from 'react';
+import { useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Navbar, Nav, Container } from 'react-bootstrap';
 import { post_number } from '../../utils/vars';
 import logo from '../../assets/legion_brand.jpg';
-import Auth from '../../utils/auth';
+import { AuthContext } from '../../utils/authContext';
 
 
 
 const NavUI = () => {
-  const logout = (e) => {
+  const { logout, isLoggedIn, setIsLoggedIn, setAdmin} = useContext(AuthContext);
+  const handleLogout = (e) => {
     e.preventDefault();
-    Auth.logout();
+    logout();
+    setIsLoggedIn(false);
+    setAdmin(false);
     navigate('/');
   }
   
@@ -40,10 +43,10 @@ const NavUI = () => {
                   <Nav.Link className='nav-link' as={Link} to='/menu'>Menu </Nav.Link>
 
                 {/* if user is logged in show the gallery and logout options*/}
-                {Auth.loggedIn() ? (
+                {isLoggedIn ? (
                   <>
                   <Nav.Link className='nav-link' as={Link} to='/gallery'>Gallery </Nav.Link>
-                  <Link className='nav-link' to="/" onClick={logout}>Logout</Link>
+                  <Link className='nav-link' to="/" onClick={handleLogout}>Logout</Link>
                   </>
                 ) : (
                   <Nav.Link className='nav-link' as={Link} to='/login'>Login/Sign Up</Nav.Link>

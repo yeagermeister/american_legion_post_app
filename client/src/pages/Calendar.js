@@ -1,21 +1,22 @@
 import { Card, Row, Col } from "react-bootstrap";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Collapsible from "react-collapsible";
 
 import CreateCalendar from "../components/calendar/createCalendar";
 import DeleteCalendar from "../components/calendar/deleteCalendar";
 
 import { getCalendar } from "../utils/API";
-import auth from "../utils/auth";
+import { AuthContext } from "../utils/authContext";
 
 const Calendar = () => {
     const [calendar, setCalendar] = useState([]);
+    const { isAdmin }= useContext(AuthContext);
+
     useEffect(() => {
         const fetchCalendar = async () => {
             try {
                 const response = await getCalendar();
-                const data = await response.json();
-                setCalendar(data.calendar);
+                setCalendar(response.data.calendar);
             } catch (err) {
                 console.error(err);
             }
@@ -26,7 +27,7 @@ const Calendar = () => {
     return (
         <Row>
             <h1>Calendar</h1>
-            {auth.isAdmin() && (
+            {isAdmin && (
                 <Col w="100" md={12} >
                     <Collapsible
                         trigger="Submit a new event"
@@ -51,7 +52,7 @@ const Calendar = () => {
                         <Card.Body>
                             <Card.Text>{calendarItem.summary}</Card.Text>
                         </Card.Body>
-                        {auth.isAdmin() ? (
+                        {isAdmin ? (
                             <>
                                 <DeleteCalendar id={calendarItem._id} />
                             </>

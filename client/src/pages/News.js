@@ -17,8 +17,7 @@ const News = () => {
     const fetchNews = async () => {
       try {
         const response = await getNews();
-        const data = await response.json();
-        setNewsItems(data.news);
+        setNewsItems(response.data.news);
       } catch (err) {
         console.error(err);
       }
@@ -36,11 +35,11 @@ const News = () => {
           </Collapsible>
         </Col> 
       )}
-      <Col w={100} md={12}>
+      <Col md={4} className='blueContainer'>
       {newsItems.length > 0 ? (
         newsItems.map((newsItem, index) => (
-          <Card key={index}>
-            <Card.Header>{new Date(newsItem.date).toLocaleDateString("en-US")}&nbsp;&nbsp;{newsItem.title}</Card.Header>
+          <Card key={index} className='myContainer'>
+            <Card.Header className='redContainer'>{new Date(newsItem.date).toLocaleDateString("en-US")}&nbsp;&nbsp;{newsItem.title}</Card.Header>
             <Card.Body>
               <Card.Text>{newsItem.summary}</Card.Text>
             </Card.Body>

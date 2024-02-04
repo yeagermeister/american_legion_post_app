@@ -33,9 +33,8 @@ const handleFormSubmit = async (event) => {
     
     try {
         const response = await createSpecial(specialFormData);
-        const data = await response.json();
-        setMenus(menus.filter((menu) => menu._id !== data.id));
-        addSpecial(data);
+        setMenus(menus.filter((menu) => menu._id !== response.data.id));
+        addSpecial(response.data);
         window.location.reload();
     } catch (err) {
         console.error("Error adding the special", err);
@@ -60,7 +59,7 @@ const handleFormSubmit = async (event) => {
         <>
         {userRole === "admin" ? (
         <>
-        <Form noValidate validated={validated} onSubmit={handleFormSubmit}>
+        <Form className='blueContainer' noValidate validated={validated} onSubmit={handleFormSubmit}>
             <Alert diismissible onClose={() => setShowAlert(false)} show={showAlert} variant='danger'>
                 Something went wroing
             </Alert>
@@ -106,9 +105,11 @@ const handleFormSubmit = async (event) => {
                     Date is required!
                 </Form.Control.Feedback>
             </Form.Group>
-            <Button type="submit" variant="success">
-                Submit
-            </Button>
+            <div className="d-flex justify-content-center">
+                <Button className='redButton' type="submit" variant="success">
+                    Submit
+                </Button>
+            </div>
         </Form>
         </>
         ) : null}

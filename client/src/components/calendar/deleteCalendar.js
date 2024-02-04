@@ -8,8 +8,6 @@ const DeleteCalendar = ( { id } ) => {
         event.preventDefault();
         try {
             const response = await deleteCalendar(id);
-            const data = await response.json();
-            console.log(data);
             window.location.reload();
         } catch (err) {
             console.error(err);

@@ -1,12 +1,13 @@
 import { getTodaysMenu } from "../utils/API"; 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import React from "react";
+import Collapsible from "react-collapsible";
 import Specials from "../components/menu/specials";
 import CreateSpecial from "../components/menu/createSpecial";
 import { entrees, sides } from "../utils/vars";
 import ListGroup from 'react-bootstrap/ListGroup';
 import { Row, Col } from 'react-bootstrap'; 
-// import { createSpecial } from "../utils/API";
+import { AuthContext } from "../utils/authContext";
 
 const Menu = () => {
   const [special, setSpecial] = useState(null);
@@ -15,12 +16,12 @@ const Menu = () => {
   const addSpecial = (newSpecial) => {
     setSpecials(prevSpecials => [...prevSpecials, newSpecial]);
 };
+  const { isAdmin }= useContext(AuthContext);
   useEffect(() => {
     (async () => {
       try {
         const response = await getTodaysMenu();
-        const data = await response.json();
-        setSpecial(data);
+        setSpecial(response.data);
       } catch (err) {
         console.error(err);
       }
@@ -66,8 +67,15 @@ const Menu = () => {
             </ListGroup>
             ))}
         </Col>
-      </Row>  
-      <CreateSpecial addSpecial={addSpecial} />
+      </Row>
+
+        {isAdmin && (
+          <Col md={6}>
+            <Collapsible trigger="Submit a new special" className="h2" triggerOpenedClassName="h2">
+              <CreateSpecial addSpecial={addSpecial} />
+            </Collapsible>
+          </Col>
+        )}
       <Specials specials={specials} />
         </div>
   );

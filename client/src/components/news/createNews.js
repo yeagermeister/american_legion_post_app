@@ -13,7 +13,6 @@ const CreateNews = () => {
         try {
             const updatedNewsItems = { ...newsItems, date: new Date() };
             const response = await createNews(updatedNewsItems);
-            const data = await response.json();
             window.location.reload();
         } catch (err) {
             console.error(err);
@@ -28,7 +27,7 @@ const CreateNews = () => {
     return (
         <>
         {auth.isAdmin() ? (
-            <Form onSubmit={handleSubmit} >
+            <Form onSubmit={handleSubmit} className="blueContainer" >
                 <Alert diismissible onClose={() => setShowAlert(false)} show={showAlert} variant='danger'>
                     Something went wroing
                 </Alert>
@@ -56,9 +55,11 @@ const CreateNews = () => {
                         Please enter a summary.
                     </Form.Control.Feedback>
                 </Form.Group>
-                <Button variant="primary" type="submit">
-                    Submit
-                </Button>
+                <div className="d-flex justify-content-center">
+                    <Button className='redButton' variant="primary" type="submit">
+                        Submit
+                    </Button>
+                </div>
             </Form>
         ) : null}
             </>   

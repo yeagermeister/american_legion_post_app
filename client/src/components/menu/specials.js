@@ -14,8 +14,9 @@ function Specials(props) {
         const fetchSpecials = async () => {
             try {
                 const response = await getSpecials();
-                const data = await response.json();
-                setMenus(data.menus);
+                const now = new Date();
+                const futureSpecials = response.data.menus.filter((menu) => new Date(menu.serveDate) > now);
+                setMenus(futureSpecials);
             } catch (err) {
                 console.error(err);
             }
@@ -27,7 +28,6 @@ function Specials(props) {
         event.preventDefault();
         try {
             const response = await deleteSpecial(id);
-            const data = await response.json();
             setMenus(prevMenus => prevMenus.filter((menu) => menu._id !== id));
         } catch (err) {
             console.error("Error deleting the menu item", err);
@@ -42,8 +42,8 @@ function Specials(props) {
                     <h1 className="text-center">Future Specials</h1>
 
                     {menus && menus.length > 0  ? (menus.map((special, index) => (
-                    <Card key={index}>
-                        <Card.Header>{special.serveDate}</Card.Header>
+                    <Card key={index} className='myContainer'>
+                        <Card.Header className='blueContainer'>{special.serveDate}</Card.Header>
                         <Card.Body>
                             <Card.Title>{special.menuText}</Card.Title>
                             <Card.Text>{special.cost.toFixed(2)}</Card.Text>
