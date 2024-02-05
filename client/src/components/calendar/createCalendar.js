@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import { Form, Button, Alert } from "react-bootstrap";
 import auth from "../../utils/auth";
 import { createCalendar } from "../../utils/API";
+import { useNavigate } from "react-router-dom";
 
 const CreateCalendar = () => {
     const [calendarItems, setCalendarItems] = useState({
@@ -11,7 +12,7 @@ const CreateCalendar = () => {
         time: ""
     });
     const [showAlert, setShowAlert] = useState(false);
-
+    const navigate = useNavigate();
     const handleSubmit = async (event) => {
         event.preventDefault();
         try {
@@ -19,7 +20,7 @@ const CreateCalendar = () => {
             console.log(updatedCalendarItems);
             const response = await createCalendar(updatedCalendarItems);
             const data = response;
-            window.location.reload();
+            navigate("/calendar");
         } catch (err) {
             console.error(err);
         }
