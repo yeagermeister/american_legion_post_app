@@ -16,7 +16,6 @@ export const createUser = (userData) => {
 };
 
 export const loginUser = (userData) => {
-  console.log("userData: ", userData);
   return axios.post(`${API_URL}/api/users/login`, userData);
 };
 
@@ -61,7 +60,6 @@ export const getCalendar = () => {
 };
 
 export const createCalendar = (calendarData) => {
-  console.log("calendarData: ", calendarData);  
   return axios.post(`${API_URL}/api/calendar`, calendarData);
 };
 
@@ -75,7 +73,6 @@ export const getGallery = () => {
 };
 
 export const createGallery = (galleryData) => {
-  console.log("galleryData: ", galleryData);
   return axios.post(`${API_URL}/api/gallery`, galleryData, {
     headers: {
         'Content-Type': 'multipart/form-data',
@@ -109,5 +106,13 @@ export const getTV = () => {
   return axios.get(`${API_URL}/api/tv`);
 };
 
+// External API Calls
+export const getWeather = () => {
+  return axios.get('https://api.weather.gov/gridpoints/TAE/121,56/forecast');
+};
+
+export const getTides = () => {
+  return axios.get('https://api.tidesandcurrents.noaa.gov/api/prod/datagetter?date=today&station=8727695&product=predictions&datum=MLLW&time_zone=lst_ldt&interval=hilo&units=english&application=DataAPI_Sample&format=json');
+};
 
 

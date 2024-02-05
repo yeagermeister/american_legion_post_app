@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Form, Button, Alert } from 'react-bootstrap';
 import { createUser } from "../../utils/API";
-import Auth from "../../utils/auth";
-import { propTypes } from 'react-bootstrap/esm/Image';
+import { AuthContext } from '../../utils/authContext';
+import { useNavigate } from 'react-router-dom';
+
+// import { propTypes } from 'react-bootstrap/esm/Image';
 
 const SignupForm = (props) => {
     const { member } = props;
@@ -12,6 +14,9 @@ const SignupForm = (props) => {
      const [validated] = useState(false);
      // set state for alert
      const [showAlert, setShowAlert] = useState(false);
+
+     const { login } = useContext(AuthContext);
+     const navigate = useNavigate();
 
      const handleInputChange = (event) => {
         const { name, value } = event.target;
@@ -31,16 +36,16 @@ const SignupForm = (props) => {
         try {
            
           const response = await createUser(userFormData);
-      
-          if (!response.ok) {
+          if (!response.statusText==="OK") {
       
             const response = await response.text; // Get the response body as text
             throw new Error(`Something went wrong: ${response}`);
           }
     
-          const { token, user } = await response.json();
-      
-          Auth.login(token);
+          const { token, user } = await response.data;
+
+          login(token);
+          navigate('/');
         } catch (err) {
           console.error(err);
           setShowAlert(true);

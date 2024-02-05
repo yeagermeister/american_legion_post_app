@@ -3,13 +3,14 @@ import { Form, Button, Alert } from 'react-bootstrap';
 import { Link } from "react-router-dom";
 import { loginUser } from '../utils/API';
 import { AuthContext } from '../utils/authContext';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
   const [userFormData, setUserFormData] = useState({ email: '', password: '' });
   const [validated] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
   const { login } = useContext(AuthContext);
-
+  const navigate = useNavigate();
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setUserFormData({ ...userFormData, [name]: value });
@@ -34,6 +35,7 @@ const Login = () => {
       const { token, user } = response.data;
       console.log(token, user);
       login(token);
+      navigate('/');
     } catch (err) {
       console.error(err);
       setShowAlert(true);

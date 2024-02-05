@@ -10,8 +10,7 @@ import { AuthContext } from "../utils/authContext";
 
 const Calendar = () => {
     const [calendar, setCalendar] = useState([]);
-    const { isAdmin }= useContext(AuthContext);
-
+    const { admin }= useContext(AuthContext);
     useEffect(() => {
         const fetchCalendar = async () => {
             try {
@@ -27,7 +26,7 @@ const Calendar = () => {
     return (
         <Row>
             <h1>Calendar</h1>
-            {isAdmin && (
+            {admin && (
                 <Col w="100" md={12} >
                     <Collapsible
                         trigger="Submit a new event"
@@ -52,7 +51,7 @@ const Calendar = () => {
                         <Card.Body>
                             <Card.Text>{calendarItem.summary}</Card.Text>
                         </Card.Body>
-                        {isAdmin ? (
+                        {admin ? (
                             <>
                                 <DeleteCalendar id={calendarItem._id} />
                             </>

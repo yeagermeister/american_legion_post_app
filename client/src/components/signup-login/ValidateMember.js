@@ -33,14 +33,14 @@ const ValidateMember = (props) => {
       event.preventDefault();
 
       const response = await getMemberId(userFormData.memberID);
-  
-      if (response.ok) {
+      if (response.statusText==="OK") {
         setIsMember(true);
         setShowAlert(false);
         //Pass the member data back up to the signup page
-        const memberData = response;
+        const memberData = response.data;
         props.onMemberData(memberData);
       } else {
+
         setIsMember(false);
         setShowAlert(true);
       }
