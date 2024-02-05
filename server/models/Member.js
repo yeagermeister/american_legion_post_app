@@ -21,22 +21,6 @@ const memberSchema = new Schema(
             // Using regex to validate an email address
             match: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
           },
-        password: {
-            type: String,
-            minlength: 8,
-        },
-        username: {
-            type: String,
-            unique: true,
-            trim: true
-        },
-        thoughts:[{
-            type: Schema.Types.ObjectId,
-            ref: 'Thought',
-          }],
-          role: {
-            type: String,
-          },
     },
     {
         toJSON: {
@@ -52,7 +36,6 @@ memberSchema.pre('save', async function (next) {
       const saltRounds = 10;
       this.password = await bcrypt.hash(this.password, saltRounds);
     }
-  
     next();
   });
   
