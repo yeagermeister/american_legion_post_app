@@ -38,7 +38,7 @@ const ValidateMember = (props) => {
         setIsMember(true);
         setShowAlert(false);
         //Pass the member data back up to the signup page
-        const memberData = await response.json();
+        const memberData = response;
         props.onMemberData(memberData);
       } else {
         setIsMember(false);
