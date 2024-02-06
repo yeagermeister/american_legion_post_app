@@ -9,7 +9,7 @@ const bodyParser = require('body-parser');
 const db = require('./config/connection');  //import the connection to the mongo database
 const routes = require('./routes');
 
-const PORT = process.env.PORT || 3001;  //sets the port to use for the express server
+const PORT = process.env.PORT || 3002;  //sets the port to use for the express server
 const app = express();  //define the express server
 
 //set up cors Options to prevent cors errors
