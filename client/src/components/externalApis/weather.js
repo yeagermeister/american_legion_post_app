@@ -29,7 +29,7 @@ const Weather = () => {
                 <Card.Body>
                     <Card.Text>
                         <p>Temperature: {weather.temperature} &deg;</p>
-                        <p>Humidity: {weather.relativeHumidity.value} %</p>
+                        {/* <p>Humidity: {weather.relativeHumidity.value} %</p> */}
                         <p>Wind Direction: {weather.windDirection} @ {weather.windspeed}</p>
                     </Card.Text>
                 </Card.Body>
