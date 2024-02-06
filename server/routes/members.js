@@ -1,15 +1,15 @@
 const router = require('express').Router();
-const Member = require('../../models/Member');
+const Member = require('../models/Member');
 
 const {
   getMembers,
   // getSingleMember,
   deleteMember,
   createMember
-} = require('../../controllers/memberController');
+} = require('../controllers/memberController');
 
 //import auth middleware so we can lockdown routes.
-const { authMiddleware, adminMiddleware } = require('../../helpers/auth');
+const { authMiddleware, adminMiddleware } = require('../helpers/auth');
 
 // /api/members
 router.route('/')

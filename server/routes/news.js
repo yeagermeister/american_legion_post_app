@@ -6,7 +6,7 @@ const {
     createNews,
     updateNews,
     deleteNews,
-} = require('../../controllers/newsController');
+} = require('../controllers/newsController');
 
 // /api/news
 router.route('/').get(getNews).post(createNews);

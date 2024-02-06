@@ -5,7 +5,7 @@ const {
   updateCalendar,
   deleteCalendar,
   getAllCalendars
-} = require('../../controllers/calendarController');
+} = require('../controllers/calendarController');
 
 // /api/calendar
 router.route('/')

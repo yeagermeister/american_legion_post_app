@@ -30,7 +30,7 @@ const Weather = () => {
                     <Card.Text>
                         <p>Temperature: {weather.temperature} &deg;</p>
                         {/* <p>Humidity: {weather.relativeHumidity.value} %</p> */}
-                        <p>Wind Direction: {weather.windDirection} @ {weather.windspeed}</p>
+                        <p>Winds: {weather.windDirection} @ {weather.windSpeed}</p>
                     </Card.Text>
                 </Card.Body>
                 <Card.Footer className="redContainer">
