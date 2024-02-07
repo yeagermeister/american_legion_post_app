@@ -2,13 +2,13 @@ import React from "react";
 import { Button } from "react-bootstrap";
 import { deleteCalendar } from "../../utils/API";
 
-const DeleteCalendar = ( { id } ) => {
+const DeleteCalendar = ( { id, onCalendarUpdate } ) => {
     const handleDelete = async (event) => {
         console.log(id);
         event.preventDefault();
         try {
             const response = await deleteCalendar(id);
-            window.location.reload();
+            onCalendarUpdate();
         } catch (err) {
             console.error(err);
         }

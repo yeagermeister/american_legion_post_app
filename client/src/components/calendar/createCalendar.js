@@ -2,25 +2,24 @@ import React, {useState} from "react";
 import { Form, Button, Alert } from "react-bootstrap";
 import auth from "../../utils/auth";
 import { createCalendar } from "../../utils/API";
-import { useNavigate } from "react-router-dom";
 
-const CreateCalendar = () => {
+const CreateCalendar = (props) => {
     const [calendarItems, setCalendarItems] = useState({
         title: "",
         summary: "",
-        date: "",
-        time: ""
+        date: new Date(),
+        time: new Date()
     });
+    
     const [showAlert, setShowAlert] = useState(false);
-    const navigate = useNavigate();
+
     const handleSubmit = async (event) => {
         event.preventDefault();
         try {
             const updatedCalendarItems = { ...calendarItems};
-            console.log(updatedCalendarItems);
+            updatedCalendarItems.date = new Date(updatedCalendarItems.date + 'T' + updatedCalendarItems.time);
             const response = await createCalendar(updatedCalendarItems);
-            const data = response;
-            navigate("/calendar");
+            props.onCalendarUpdate();
         } catch (err) {
             console.error(err);
         }
@@ -46,7 +45,6 @@ const CreateCalendar = () => {
                                 placeholder="Enter title"
                                 name="title"
                                 onChange={handleInputChange}
-                                // value={specialFormData.menuText}
                                 required
                             />
                             <Form.Control.Feedback type="invalid">
@@ -60,12 +58,7 @@ const CreateCalendar = () => {
                                 placeholder="Summary"
                                 name="summary"
                                 onChange={handleInputChange}
-                                // value={specialFormData.cost}
-                                required
                             />
-                            <Form.Control.Feedback type="invalid">
-                                Summary is required!
-                            </Form.Control.Feedback>
                 </Form.Group>
                 <Form.Group>
                     <Form.Label>What date will this event occur?</Form.Label>
@@ -74,7 +67,6 @@ const CreateCalendar = () => {
                         placeholder="Date"
                         name="date"
                         onChange={handleInputChange}
-                        // value={specialFormData.serveDate}
                         required
                     />
                     <Form.Control.Feedback type="invalid">
@@ -86,7 +78,6 @@ const CreateCalendar = () => {
                         placeholder="Time"
                         name="time"
                         onChange={handleInputChange}
-                        // value={specialFormData.serveDate}
                         required
                     />
                     <Form.Control.Feedback type="invalid">

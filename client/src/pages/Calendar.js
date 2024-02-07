@@ -10,18 +10,29 @@ import { AuthContext } from "../utils/authContext";
 
 const Calendar = () => {
     const [calendar, setCalendar] = useState([]);
+    const [collapsibleKey, setCollapsibleKey] = useState(0);
+    // const [isCollapsibleOpen, setIsCollapsibleOpen] = useState(false);
+
     const { admin }= useContext(AuthContext);
+
+    const fetchCalendar = async () => {
+        try {
+            const response = await getCalendar();
+            setCalendar(response.data.calendar);
+        } catch (err) {
+            console.error(err);
+        }
+    };
+
+    const handleCalendarUpdate = () => {
+        fetchCalendar();
+        setCollapsibleKey(prevKey => prevKey + 1); // Increment key to force Collapsible to close
+    };
+
     useEffect(() => {
-        const fetchCalendar = async () => {
-            try {
-                const response = await getCalendar();
-                setCalendar(response.data.calendar);
-            } catch (err) {
-                console.error(err);
-            }
-        };
         fetchCalendar();
     }, []);
+
 
     return (
         <Row>
@@ -29,23 +40,32 @@ const Calendar = () => {
             {admin && (
                 <Col w="100" md={12} >
                     <Collapsible
+                    key={collapsibleKey}
                         trigger="Submit a new event"
                         className="h2"
                         triggerOpenedClassName="h2"
                     >
-                        <CreateCalendar />
+                        <CreateCalendar onCalendarUpdate={handleCalendarUpdate}/>
                     </Collapsible>
                 </Col>
             )}
             <Col md={4} className="blueContainer">
             {calendar.length > 0 ? (
-                calendar.map((calendarItem, index) => (
+                calendar
+                .sort((a, b) => new Date(a.date) - new Date(b.date))
+                .map((calendarItem, index) => (
                     <Card key={index} className="myContainer">
                         <Card.Header className="redContainer">
                             {new Date(calendarItem.date).toLocaleDateString(
-                                "en-US"
+                                "en-US",
+                                {
+                                    weekday: "long",
+                                    month: "long",
+                                    day: "numeric",
+                                    hour: "2-digit",
+                                    minute: "2-digit", 
+                                }
                             )}
-                            &nbsp;&nbsp;{new Date(`1970-01-01T${calendarItem.time}Z`).toLocaleTimeString("en-US", { hour: '2-digit', minute: '2-digit' })}
                             &nbsp;&nbsp;{calendarItem.title}
                         </Card.Header>
                         <Card.Body>
@@ -53,7 +73,7 @@ const Calendar = () => {
                         </Card.Body>
                         {admin ? (
                             <>
-                                <DeleteCalendar id={calendarItem._id} />
+                                <DeleteCalendar id={calendarItem._id} onCalendarUpdate={handleCalendarUpdate}/>
                             </>
                         ) : null}
                     </Card>
