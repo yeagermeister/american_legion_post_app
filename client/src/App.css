@@ -23,6 +23,7 @@ h1 {
   margin-top: 5px;
   margin-bottom: 5px;
   margin-left: 5%;
+  padding-left: 5px !important;
   text-decoration: none !important;
   background-color: var(--red) !important;
   border-radius: 10px;
@@ -67,4 +68,9 @@ h1 {
   margin-right: 10px;
   background-color: var(--blue) !important;
   border-color: var(--white) !important;
+}
+
+.whiteButton {
+  background-color: var(--white) !important;
+  border-color: var(--red) !important;
 }

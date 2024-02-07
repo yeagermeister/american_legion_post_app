@@ -33,7 +33,7 @@ const NavUI = () => {
             />{' '}
           </Navbar.Brand>
 
-          <Navbar.Toggle aria-controls='navbar' />
+          <Navbar.Toggle className="whiteButton" aria-controls='navbar' />
             <Navbar.Collapse id='navbar'>
               <Nav>
                   <Nav.Link className='nav-link' as={Link} to='/'>American Legion Post {post_number}</Nav.Link>
