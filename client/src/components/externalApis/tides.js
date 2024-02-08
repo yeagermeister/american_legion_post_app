@@ -28,8 +28,6 @@ const Tides = () => {
         fetchTides();
     }, []);
 
-    console.log(tides);
-
     return (
         <>
             <Container className="blueContainer">
@@ -40,13 +38,15 @@ const Tides = () => {
                 <Card.Body>
                     <Card.Text>
                         <table>
+                            <tbody>
                             {tides.map((tide, i) => (
-                                <tr>
+                                <tr key = {i}>
                                     <td>{tide.t}</td>
                                     <td>&nbsp;&nbsp;&nbsp;&nbsp;{tide.v}</td>
                                     <td>&nbsp;&nbsp;&nbsp;&nbsp;{tide.type}</td>
                                 </tr>
                             ))}
+                            </tbody>
                         </table>
                     </Card.Text>
                 </Card.Body>
