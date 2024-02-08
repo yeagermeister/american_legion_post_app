@@ -11,8 +11,6 @@ import { AuthContext } from "../utils/authContext";
 const Calendar = () => {
     const [calendar, setCalendar] = useState([]);
     const [collapsibleKey, setCollapsibleKey] = useState(0);
-    // const [isCollapsibleOpen, setIsCollapsibleOpen] = useState(false);
-
     const { admin }= useContext(AuthContext);
 
     const fetchCalendar = async () => {
@@ -33,14 +31,13 @@ const Calendar = () => {
         fetchCalendar();
     }, []);
 
-
     return (
         <Row>
             <h1>Calendar</h1>
             {admin && (
                 <Col w="100" md={12} >
                     <Collapsible
-                    key={collapsibleKey}
+                        key={collapsibleKey}
                         trigger="Submit a new event"
                         className="h2"
                         triggerOpenedClassName="h2"

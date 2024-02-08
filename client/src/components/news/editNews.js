@@ -3,7 +3,7 @@ import { Button, Form, Alert } from "react-bootstrap";
 import Collapsible from 'react-collapsible';
 import { updateNews } from "../../utils/API";
 
-const EditNews = ( { id } ) => {
+const EditNews = ( { id, onNewsUpdate } ) => {
 
     const [newsItems, setNewsItems] = useState(
         {
@@ -23,9 +23,8 @@ const EditNews = ( { id } ) => {
             setNewsItems(updatedNewsItems);
             console.log(newsItems);
             const response = await updateNews(newsItems);
-            const data = await response.json();
-            console.log(data);
-            window.location.reload();
+            console.log(response);
+            onNewsUpdate();
         } catch (err) {
             console.error(err);
         }

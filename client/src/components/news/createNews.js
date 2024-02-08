@@ -3,7 +3,7 @@ import { Form, Button, Alert } from 'react-bootstrap';
 import auth from '../../utils/auth';
 import { createNews } from '../../utils/API';
 
-const CreateNews = () => {
+const CreateNews = (props) => {
 
     const [newsItems, setNewsItems] = useState([]);
     const [showAlert, setShowAlert] = useState(false);
@@ -13,7 +13,7 @@ const CreateNews = () => {
         try {
             const updatedNewsItems = { ...newsItems, date: new Date() };
             const response = await createNews(updatedNewsItems);
-            window.location.reload();
+            props.onNewsUpdate();
         } catch (err) {
             console.error(err);
         }
@@ -26,10 +26,9 @@ const CreateNews = () => {
     
     return (
         <>
-        {auth.isAdmin() ? (
             <Form onSubmit={handleSubmit} className="blueContainer" >
                 <Alert diismissible onClose={() => setShowAlert(false)} show={showAlert} variant='danger'>
-                    Something went wroing
+                    Something went wrong
                 </Alert>
                 <Form.Group>
                     <Form.Label>Title</Form.Label>
@@ -61,8 +60,7 @@ const CreateNews = () => {
                     </Button>
                 </div>
             </Form>
-        ) : null}
-            </>   
+        </>   
     )
 }
 

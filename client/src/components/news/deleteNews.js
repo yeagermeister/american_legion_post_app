@@ -2,14 +2,14 @@ import React from "react";
 import { Button } from "react-bootstrap";
 import { deleteNews } from "../../utils/API";
 
-const DeleteNews = ( { id } ) => {
+const DeleteNews = ( { id, onNewsUpdate } ) => {
     
     const handleDelete = async (event) => {
         console.log(id);
         event.preventDefault();
         try {
             const response = await deleteNews(id);
-            window.location.reload();
+            onNewsUpdate();
         } catch (err) {
             console.error(err);
         }

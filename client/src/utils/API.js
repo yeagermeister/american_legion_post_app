@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'http://64.111.99.88:3001';
+const API_URL = 'http://localhost:3001';
 
 // User related API calls
 export const getMemberId = (memberId) => {

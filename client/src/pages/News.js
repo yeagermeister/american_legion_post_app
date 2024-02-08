@@ -1,37 +1,49 @@
-import React, { useState, useEffect } from 'react'; 
+import React, { useContext, useEffect, useState } from 'react'; 
 import { Card, Col } from 'react-bootstrap';
 import Collapsible from 'react-collapsible';
 
 import CreateNews from '../components/news/createNews';
-import EditNews from '../components/news/editNews';
 import DeleteNews from '../components/news/deleteNews';
+import EditNews from '../components/news/editNews';
 
 import { getNews } from '../utils/API';
-import auth from '../utils/auth';
+import { AuthContext } from "../utils/authContext";
 
 const News = () => {
   const [newsItems, setNewsItems] = useState([]);
+  const [collapsibleKey, setCollapsibleKey] = useState(0);
+  const { admin }= useContext(AuthContext);
 
+  const fetchNews = async () => {
+    try {
+      const response = await getNews();
+      setNewsItems(response.data.news);
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  const handleNewsUpdate = () => {
+    fetchNews();
+    setCollapsibleKey(prevKey => prevKey + 1); // Increment key to force Collapsible to close
+  };
 
   useEffect(() => {
-    const fetchNews = async () => {
-      try {
-        const response = await getNews();
-        setNewsItems(response.data.news);
-      } catch (err) {
-        console.error(err);
-      }
-    };
-    fetchNews(); 
+    fetchNews();
   }, []);
 
   return (
     <>
       <h1>News</h1>
-      {auth.isAdmin() && (  
+      {admin && (  
         <Col w="100" md={6}>
-          <Collapsible trigger="Submit a new article" className="h2" triggerOpenedClassName="h2">
-            <CreateNews /> 
+          <Collapsible 
+            key={collapsibleKey}
+            trigger="Submit a new article" 
+            className="h2" 
+            triggerOpenedClassName="h2"
+          >
+            <CreateNews onNewsUpdate={handleNewsUpdate}/> 
           </Collapsible>
         </Col> 
       )}
@@ -43,10 +55,10 @@ const News = () => {
             <Card.Body>
               <Card.Text>{newsItem.summary}</Card.Text>
             </Card.Body>
-            {auth.isAdmin() ? (
+            {admin ? (
               <>
-                <EditNews id={newsItem.id}/>
-                <DeleteNews id={newsItem.id}/>
+                <EditNews id={newsItem.id} onNewsUpdate={handleNewsUpdate}/>
+                <DeleteNews id={newsItem.id} onNewsUpdate={handleNewsUpdate}/>
               </>
               ) : null
             }

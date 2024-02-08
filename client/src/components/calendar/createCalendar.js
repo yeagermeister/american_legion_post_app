@@ -1,6 +1,5 @@
 import React, {useState} from "react";
 import { Form, Button, Alert } from "react-bootstrap";
-import auth from "../../utils/auth";
 import { createCalendar } from "../../utils/API";
 
 const CreateCalendar = (props) => {
@@ -32,8 +31,6 @@ const CreateCalendar = (props) => {
 
     return (
         <>
-        {auth.isAdmin() ? (
-            <>
             <Form onSubmit={handleSubmit} className="blueContainer">
                 <Alert dismissible onClose={() => setShowAlert(false)} show={showAlert} variant='danger'>
                     Something went wroing
@@ -90,10 +87,7 @@ const CreateCalendar = (props) => {
                     </Button>
                 </div>
             </Form>
-            </>
-    ) : null } 
-    </>
-
+        </>
     )
 };
 

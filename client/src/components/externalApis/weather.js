@@ -18,8 +18,6 @@ const Weather = () => {
         fetchWeather();
     }, []);
 
-    console.log(weather);
-
     return (
         <Container className="blueContainer">
             <Card className="myContainer">
