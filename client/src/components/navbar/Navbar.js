@@ -18,6 +18,7 @@ const NavUI = () => {
   }
   
   const navigate = useNavigate();
+console.log('isLoggedIn', isLoggedIn);
 
   return (
     <>
