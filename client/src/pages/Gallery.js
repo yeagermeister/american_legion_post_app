@@ -1,5 +1,5 @@
 import { Card, Row, Col } from 'react-bootstrap';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import Collapsible from 'react-collapsible';
 
 import SubmitGallery from '../components/gallery/submitGallery';
