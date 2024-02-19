@@ -1,14 +1,19 @@
 import auth from '../utils/auth';
 import { Row, Col, Card, Button, Modal, Form } from 'react-bootstrap';
 import { Link } from "react-router-dom";
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Collapsible from 'react-collapsible';
+
 import SubmitGallery from '../components/gallery/submitGallery';
-import { deleteGallery, updateGallery, getGallery } from '../utils/API';
 import GalleryComment from '../components/gallery/galleryComment';
+import DeleteGallery from '../components/gallery/deleteGallery';
+
+import { updateGallery, getGallery } from '../utils/API';
+
 
 const Gallery = () => {
   const [galleryItems, setGalleryItems] = useState([]);
+  const [collapsibleKey, setCollapsibleKey] = useState(0);
 
   const [showModal, setShowModal] = useState(false);
   const [editItem, setEditItem] = useState(null);
@@ -54,7 +59,11 @@ const Gallery = () => {
     setShowModal(true);
   };
   
-  const handleClose = () => setShowModal(false);
+  const handleClose = () => {
+    setShowModal(false);
+    fetchGalleries();
+  };
+  
   const handleCommentClose = () => setShowCommentModal(false);
 
   // const handleComment = (item) => {
@@ -116,6 +125,11 @@ const Gallery = () => {
     }));
   };
 
+  const handleGalleryUpdate = () => {
+    fetchGalleries();
+    setCollapsibleKey(prevKey => prevKey + 1); // Increment key to force Collapsible to close
+  };
+
   return (
     <>
     <div>
@@ -123,8 +137,12 @@ const Gallery = () => {
     </div>
     {auth.loggedIn() ? (
       <>
-      <Collapsible trigger="Submit a new Gallery" className="h2" triggerOpenedCLassName="h2">
-        <SubmitGallery />
+      <Collapsible 
+      key={collapsibleKey}
+      trigger="Submit a new Gallery" 
+      className="h2" 
+      triggerOpenedCLassName="h2">
+        <SubmitGallery onGalleryUpdate={handleGalleryUpdate}/>
       </Collapsible>
       <Row className="w-100">
         <Col md={6}>
@@ -186,9 +204,13 @@ const Gallery = () => {
                         </Modal.Footer>
                       </Modal>
 
-                  <Button variant="danger" onClick={() => handleDelete(galleryItem._id)}>Delete</Button>
-                </div>
+                 {admin ? (
+                  <>
+                    <deleteGallery id={galleryItem._id} onGalleryUpdate={handleGalleryUpdate}/>
+                  </>
               ) : null}
+              </div>)
+              : null}
             </Card>
           </div>
         ))) : (<h4>No gallery items to display</h4>)}        
