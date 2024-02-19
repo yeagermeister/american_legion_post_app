@@ -63,7 +63,7 @@ const Gallery = () => {
     setShowModal(false);
     fetchGalleries();
   };
-  
+
   const handleCommentClose = () => setShowCommentModal(false);
 
   // const handleComment = (item) => {
@@ -145,10 +145,10 @@ const Gallery = () => {
         <SubmitGallery onGalleryUpdate={handleGalleryUpdate}/>
       </Collapsible>
       <Row className="w-100">
-        <Col md={6}>
+        <Col md={4} className='blueContainer'>
         {galleryItems && galleryItems.length > 0 ? ([...galleryItems].reverse().map((galleryItem, index) => (
           <div key={index}>
-            <Card>
+            <Card className='myContainer'>
               <Link to={`/gallery/${galleryItem._id}`}>
                 <Card.Img variant="top" src={galleryItem.pics[0]} />
                 <Card.Body>
