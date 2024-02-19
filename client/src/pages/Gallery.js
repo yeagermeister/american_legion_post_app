@@ -28,7 +28,7 @@ const Gallery = () => {
     const fetchGallery = async () => {
       try {
         const response = await getGallery();
-        consolw.log(response.data);
+        console.log(response.data);
         setGalleryItems(response.data.galleries);
       } catch (err) {
         console.error(err);
