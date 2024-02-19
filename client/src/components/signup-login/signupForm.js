@@ -38,8 +38,8 @@ const SignupForm = (props) => {
           const response = await createUser(userFormData);
           if (!response.statusText==="OK") {
       
-            const response = await response.text; // Get the response body as text
-            throw new Error(`Something went wrong: ${response}`);
+            const update = await response.text; // Get the response body as text
+            throw new Error(`Something went wrong: ${update}`);
           }
     
           const { token, user } = await response.data;

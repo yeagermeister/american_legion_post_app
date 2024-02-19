@@ -1,6 +1,6 @@
 import auth from '../../utils/auth';
 import { Button, Modal, Form } from 'react-bootstrap';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { addReaction } from '../../utils/API';
 
 const GalleryComment = ({ id, onGalleryUpdate }) => {
@@ -15,7 +15,10 @@ const GalleryComment = ({ id, onGalleryUpdate }) => {
         setShowModal(true);
         }
 
-    const handleClose = () => setShowModal(false);
+    const handleClose = () => {
+      setShowModal(false);
+      onGalleryUpdate();
+    }
 
     const handleInputChange = (event) => {
         const { name, value } = event.target;
@@ -39,7 +42,9 @@ const GalleryComment = ({ id, onGalleryUpdate }) => {
             } catch (err) {
                 console.error(err);
             }
-        }
+        onGalleryUpdate();
+      }
+      
     return (
         <>
         {auth.loggedIn() ? (

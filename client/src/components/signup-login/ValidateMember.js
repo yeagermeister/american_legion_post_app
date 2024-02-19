@@ -4,24 +4,8 @@ import { getMemberId } from "../../utils/API";
 
 
 const ValidateMember = (props) => {
-    const [isMember, setIsMember] = useState(false);
+    // const [isMember, setIsMember] = useState(false);
     
-    // const [member, setMember] = useState(null);
-
-
-    // useEffect(() => {
-    //   const checkMember = async () => {
-    //     const response = await getMemberId();
-    //     if (response) {
-    //       setIsMember(true);
-    //     } else {
-    //       setIsMember(false);
-    //     }
-    //   };
-    //   checkMember();
-    // },  []);
-
-
     // set initial form state
     const [userFormData, setUserFormData] = useState({ memberID: '' });
     // set state for form validation

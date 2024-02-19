@@ -1,6 +1,5 @@
 import React , { useState } from 'react';
 import { Form, Button, Alert } from 'react-bootstrap';
-import auth from '../../utils/auth';
 import { createNews } from '../../utils/API';
 
 const CreateNews = (props) => {

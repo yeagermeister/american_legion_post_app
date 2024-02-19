@@ -17,8 +17,6 @@ function CreateSpecial({ addSpecial }) {
         token: localStorage.getItem('id_token'),
     });
 
-    const [validated, setValidated] = useState(false);
-
     const [showAlert, setShowAlert] = useState(false);
 
 
@@ -59,7 +57,7 @@ const handleFormSubmit = async (event) => {
         <>
         {userRole === "admin" ? (
         <>
-        <Form className='blueContainer' noValidate validated={validated} onSubmit={handleFormSubmit}>
+        <Form className='blueContainer' onSubmit={handleFormSubmit}>
             <Alert diismissible onClose={() => setShowAlert(false)} show={showAlert} variant='danger'>
                 Something went wroing
             </Alert>

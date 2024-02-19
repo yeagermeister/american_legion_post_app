@@ -10,7 +10,7 @@ const UpdateGallery = ({ id, onGalleryUpdate }) => {
         title: "",
         summary: "",
     });
-    const [validated, setValidated] = useState(false);
+    
     const [showAlert, setShowAlert] = useState(false);
 
     const handleSubmit = async (event) => {

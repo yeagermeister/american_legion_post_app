@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Button, Form, Alert } from "react-bootstrap";
 import Collapsible from 'react-collapsible';
 import { updateNews } from "../../utils/API";
@@ -12,7 +12,7 @@ const EditNews = ( { id, onNewsUpdate } ) => {
             summary: '',
         }
     );
-    const [validated, setValidated] = useState(false);
+
     const [showAlert, setShowAlert] = useState(false);
 
     const handleSubmit = async (event) => {

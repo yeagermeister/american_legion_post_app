@@ -1,7 +1,6 @@
 import { getSpecials } from "../../utils/API";
 import { deleteSpecial } from "../../utils/API";
 import { Card, Button, Container, Row, Col } from 'react-bootstrap';
-import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import auth from "../../utils/auth";
 
