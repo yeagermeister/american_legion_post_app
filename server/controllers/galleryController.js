@@ -30,7 +30,7 @@ const storage = multer.diskStorage({
     const filename = title + '-' + Date.now() + path.extname(file.originalname); //Appending extension
     cb(null, filename)
       // Construct the URL for the uploaded file
-  const fileUrl = 'http://localhost:3000/public/images/' + filename;
+  const fileUrl = 'https://post291.org/public/images/' + filename;
   console.log('File URL:', fileUrl);
   }
 });
