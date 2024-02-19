@@ -3,7 +3,7 @@ import { Button, Modal, Form } from 'react-bootstrap';
 import { useEffect, useState } from 'react';
 import { addReaction } from '../../utils/API';
 
-const GalleryComment = ({ id }) => {
+const GalleryComment = ({ id, onGalleryUpdate }) => {
     const [showModal, setShowModal] = useState(false);
     const [commentItem, setCommentItem] = useState(null);
     const [formData, setFormData] = useState(null);
