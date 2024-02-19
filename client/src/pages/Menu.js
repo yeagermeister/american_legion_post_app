@@ -9,7 +9,7 @@ import ListGroup from 'react-bootstrap/ListGroup';
 import { Row, Col } from 'react-bootstrap'; 
 import { AuthContext } from "../utils/authContext";
 
-const Subtype = () => {
+const Menu = () => {
   const [special, setSpecial] = useState(null);
   // const [menu, setMenu] = useState([]);
   const [specials, setSpecials] = useState([]);
