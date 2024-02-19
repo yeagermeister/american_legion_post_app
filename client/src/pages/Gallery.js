@@ -16,6 +16,14 @@ const Gallery = () => {
   const [showCommentModal, setShowCommentModal] = useState(false);
   const [commentItem, setCommentItem] = useState(null);
   
+  const fetchGalleries = async () => {
+    try {
+      const response = await getGallery();
+      setGalleryItems(response.data.galleries);
+    } catch (err) {
+      console.error(err);
+    }
+  };
 
   const [formData, setFormData] = useState({
     title: '',
@@ -25,16 +33,7 @@ const Gallery = () => {
 
 
   useEffect(() => {
-    const fetchGallery = async () => {
-      try {
-        const response = await getGallery();
-        console.log(response.data);
-        setGalleryItems(response.data.galleries);
-      } catch (err) {
-        console.error(err);
-      }
-    };
-    fetchGallery(); 
+    fetchGalleries(); 
   }, []);
 
   const handleDelete = async (id) => {
