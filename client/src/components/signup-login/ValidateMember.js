@@ -4,7 +4,7 @@ import { getMemberId } from "../../utils/API";
 
 
 const ValidateMember = (props) => {
-    // const [isMember, setIsMember] = useState(false);
+    const [isMember, setIsMember] = useState(false);
     
     // set initial form state
     const [userFormData, setUserFormData] = useState({ memberID: '' });
