@@ -25,7 +25,6 @@ import Gallery from './pages/Gallery';
 import Calendar from './pages/Calendar';
 import NotFound from './pages/NotFound';
 import TV from './pages/TV';
-import Event from './pages/Event';
 
 function App() {
 
@@ -44,7 +43,6 @@ function App() {
             <Route exact path='/gallery' element={<Gallery />} />
             <Route exact path='/calendar' element={<Calendar />} />
             <Route exact path='/tv' element={<TV />} />
-            <Route exact path='/gallery/:id' element={<Event />} />
             <Route path='*' element={<NotFound />}/>
           </Routes>
           </AuthProvider>
