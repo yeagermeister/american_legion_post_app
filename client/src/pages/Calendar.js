@@ -30,7 +30,7 @@ const Calendar = () => {
     useEffect(() => {
         fetchCalendar();
     }, []);
-console.log(admin)
+
     return (
         <Row>
             <h1>Calendar</h1>

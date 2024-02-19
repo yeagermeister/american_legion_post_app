@@ -1,9 +1,8 @@
 import {Form, Button, Alert} from 'react-bootstrap';
 import {useState} from 'react';
 import {createGallery} from '../../utils/API';
-import auth from '../../utils/auth';
 
-function SubmitGallery( {createdGallery}) {
+function SubmitGallery(props) {
     const [galleryFormData, setGalleryFormData] = useState({
         title: '',
         date: '',
@@ -11,7 +10,6 @@ function SubmitGallery( {createdGallery}) {
         pics: [],
     });
 
-    const [validated, setValidated] = useState(false);
     const [showAlert, setShowAlert] = useState(false);
 
     const handleFormSubmit = async (event) => {
@@ -42,7 +40,7 @@ function SubmitGallery( {createdGallery}) {
                 summary: '',
                 pics: [],
             });
-            window.location.reload();
+            props.onGalleryUpdate()
         } catch (err) {
             console.error('Error adding the gallery item', err);
         }
@@ -59,8 +57,8 @@ function SubmitGallery( {createdGallery}) {
 
     return (
         <>
-        <Form noValidate validated={validated} onSubmit={handleFormSubmit} encType='multipart/form-data'>
-            <Alert diismissible onClose={() => setShowAlert(false)} show={showAlert} variant='danger'>
+        <Form onSubmit={handleFormSubmit} className='blueContainer' encType='multipart/form-data'>
+            <Alert dismissible onClose={() => setShowAlert(false)} show={showAlert} variant='danger'>
                     Something went wroing
             </Alert>
             <Form.Group>
@@ -114,6 +112,7 @@ function SubmitGallery( {createdGallery}) {
             <Button
                 disabled={!(galleryFormData.title && galleryFormData.date && galleryFormData.summary && galleryFormData.pics)}
                 type='submit'
+                className='redButton'
                 variant='success'>
                 Submit
             </Button>
