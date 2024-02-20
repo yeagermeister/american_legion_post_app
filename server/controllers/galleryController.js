@@ -60,7 +60,7 @@ module.exports = {
     },
     // create a new gallery
     createGallery: [upload.array('pics'), (req, res) => {
-      console.log("Server input, in createGallery function, req.body: ", req.body);
+      console.log("Made it to submit");
 
       const galleryData = {
         ...req.body,
