@@ -60,6 +60,8 @@ module.exports = {
     },
     // create a new gallery
     createGallery: [upload.array('pics'), (req, res) => {
+      console.log("Server input, in createGallery function, req.body: ", req.body);
+
       const galleryData = {
         ...req.body,
         pics: req.files.map(file => `${req.protocol}://${req.get('host')}/images/` + file.filename), // Store the file paths in the database
