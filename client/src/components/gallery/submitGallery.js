@@ -26,16 +26,10 @@ function SubmitGallery(props) {
         });
 
         try {
+            for (let [key, value] of formData.entries()) {
+                console.log(key, value);
+            }
             const response = await createGallery(formData);
-            // const response = await fetch('/api/gallery', {
-            //     method: 'POST',
-            //     body: formData,
-            //     headers: {
-            //         'Content-Type': 'multipart/form-data',
-            //     },
-            // });
-    
-            // const data = await response;
             console.log('Gallery item created', response);
     
             setGalleryFormData({
