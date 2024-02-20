@@ -23,6 +23,7 @@ const UpdateGallery = ({ id, onGalleryUpdate }) => {
         } catch (err) {
             console.error(err);
         }
+        onGalleryUpdate();
     };
 
     const handleInputChange = (event) => {

@@ -42,6 +42,7 @@ const GalleryComment = ({ id, onGalleryUpdate }) => {
             } catch (err) {
                 console.error(err);
             }
+        setShowModal(false);
         onGalleryUpdate();
       }
       

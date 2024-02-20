@@ -26,6 +26,7 @@ function SubmitGallery(props) {
         });
 
         try {
+            console.log('form data', formData);
             const response = await fetch('/api/gallery', {
                 method: 'POST',
                 body: formData,
