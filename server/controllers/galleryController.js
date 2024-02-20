@@ -4,7 +4,7 @@ const multer = require('multer');
 const path = require('path');
 const fs = require('fs');
 
-const dir = `./testUploads/`;
+const dir = `../website/post291.org/images/`;
 
 
 if (!fs.existsSync(dir)){
