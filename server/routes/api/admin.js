@@ -5,7 +5,7 @@ const {
     getSingleAdmin,
     createAdmin,
     deleteAdmin,
-} = require('../controllers/adminController');
+} = require('../../controllers/adminController');
 
 // /api/admin
 router.route('/').get(getAdmins).post(createAdmin).get(getSingleAdmin); 

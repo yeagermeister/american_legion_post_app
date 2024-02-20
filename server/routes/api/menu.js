@@ -6,11 +6,11 @@ const {
   deleteMenu,
   getAllMenus,
   getTodaysMenu
-} = require('../controllers/menuController');
+} = require('../../controllers/menuController');
 
 //import auth middleware so we can lockdown routes.
 
-const { authMiddleware } = require('../helpers/auth');
+const { authMiddleware } = require('../../helpers/auth');
 // /api/menu
 router.route('/')
 .post(authMiddleware, (req, res) => {createMenu (req, res);})

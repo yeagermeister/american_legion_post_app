@@ -15,13 +15,6 @@ const storage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, dir) // Use the absolute path
   },
-  // filename: function (req, file, cb) {
-  //   console.log("Server input in filename function, file: ", file);
-  //   console.log("Server input, in filename function, req.body: ", req); 
-  //   console.log("Server input, in filename function, req.files: ", req.files);
-  //   const title = req.body.title.replace(/\s/g, '_'); // Replace spaces with underscores
-  //   cb(null, title + '-' + Date.now() + path.extname(file.originalname)) //Appending extension
-  // }
   filename: function (req, file, cb) {
     console.log("Server input in filename function, file: ", file);
     console.log("Server input, in filename function, req.body: ", req); 
@@ -30,8 +23,7 @@ const storage = multer.diskStorage({
     const filename = title + '-' + Date.now() + path.extname(file.originalname); //Appending extension
     cb(null, filename)
       // Construct the URL for the uploaded file
-  const fileUrl = 'https://post291.org/public/images/' + filename;
-  console.log('File URL:', fileUrl);
+  const fileUrl = 'https://post291.org/images/' + filename;
   }
 });
 
@@ -70,13 +62,10 @@ module.exports = {
     },
     // create a new gallery
     createGallery: [upload.array('pics'), (req, res) => {
-      console.log("Server input, req.body: ", req.body);
-      console.log("Server input, req.files: ", req.files);
-      console.log("Server input, req.files.map: ", req.files.map(file => '/images/' + file.filename));
 
       const galleryData = {
         ...req.body,
-        pics: req.files.map(file => 'http://10.167.1.98:3000/images/' + file.filename), // Store the file paths in the database
+        pics: req.files.map(file => 'https://post291.org/images/' + file.filename), // Store the file paths in the database
       };
       console.log(galleryData);
       Gallery.create(galleryData)

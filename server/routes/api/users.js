@@ -7,10 +7,10 @@ const {
   updateUser,
   deleteUser,
   login,
-} = require('../controllers/userController');
+} = require('../../controllers/userController');
 
 //import auth middleware so we can lockdown routes.
-const { authMiddleware, adminMiddleware } = require('../helpers/auth');
+const { authMiddleware, adminMiddleware } = require('../../helpers/auth');
 
 // /api/users
 router.route('/')

@@ -4,6 +4,7 @@ const { trimId } = require('../helpers/helpers');
 module.exports = {
     // Get all calendars
     getAllCalendars(req, res) {
+        console.log('getAllCalendars');
         Calendar.find()
             .then(async (calendar) => {
                 const calendarObj = {

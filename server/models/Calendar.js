@@ -11,11 +11,11 @@ const calendarSchema = new Schema(
             type: String,
         },
         date: {
-            type: Date,
+            type: String,
             required: true,
         },
         time: {
-            type: Date,
+            type: String,
             required: true,
         },
     }

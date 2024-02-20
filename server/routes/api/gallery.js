@@ -8,7 +8,7 @@ const {
   deleteGallery,
   addReaction,
   removeReaction,
-} = require('../controllers/galleryController');
+} = require('../../controllers/galleryController');
 
 // /api/gallery
 router.route('/')
