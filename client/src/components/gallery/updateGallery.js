@@ -17,6 +17,7 @@ const UpdateGallery = ({ id, onGalleryUpdate }) => {
         event.preventDefault();
         try {
             const updatedGalleryItems = { ...galleryItems };
+            console.log(updatedGalleryItems);
             const response = await updateGallery(updatedGalleryItems);
             onGalleryUpdate();
         } catch (err) {
