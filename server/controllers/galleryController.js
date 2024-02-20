@@ -78,7 +78,7 @@ module.exports = {
       Gallery.create(galleryData)
           .then((gallery) => res.json(gallery))
           .catch((err) => res.status(500).json(err));
-  }
+  },
 
     // Delete a gallery
     deleteGallery(req, res) {   
