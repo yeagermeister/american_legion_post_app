@@ -6,7 +6,7 @@ const path = require('path');
 router.use('/api', apiRoutes);
 
 // Serve static files from the /public/images directory
-router.use('/images', express.static(path.join(__dirname, 'public', 'images')));
+router.use('/images', express.static(path.join(__dirname, 'images')));
 
 router.use((req, res) => res.send('Wrong route!'));
 

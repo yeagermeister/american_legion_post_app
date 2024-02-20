@@ -3,29 +3,35 @@ const { trimId } = require('../helpers/helpers');
 const multer = require('multer');
 const path = require('path');
 const fs = require('fs');
+const url = `https://post291.org/images/`;
+// const url = `http://localhost/images/`;
 
-const dir = `./images/`;
+function setupMulter() {
+  const dir = `./images/`;
 
 
-if (!fs.existsSync(dir)){
-    fs.mkdirSync(dir, { recursive: true });
-};
+  if (!fs.existsSync(dir)){
+      fs.mkdirSync(dir, { recursive: true });
+  };
 
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, dir) // Use the absolute path
-  },
-  filename: function (req, file, cb) {
-    console.log("Server input in filename function, file: ", file);
-    console.log("Server input, in filename function, req.body: ", req); 
-    console.log("Server input, in filename function, req.files: ", req.files);
-    const title = file.originalname.replace(/\s/g, '_'); // Replace spaces with underscores
-    const filename = title + '-' + Date.now() + path.extname(file.originalname); //Appending extension
-    cb(null, filename)
-  }
-});
+  const storage = multer.diskStorage({
+      destination: function (req, file, cb) {
+          cb(null, dir) // Use the absolute path
+      },
+      filename: function (req, file, cb) {
+          console.log("Server input in filename function, file: ", file);
+          console.log("Server input, in filename function, req.body: ", req); 
+          console.log("Server input, in filename function, req.files: ", req.files);
+          const title = file.originalname.replace(/\s/g, '_'); // Replace spaces with underscores
+          const filename = title + '-' + Date.now() + path.extname(file.originalname); //Appending extension
+          cb(null, filename)
+      }
+  });
 
-const upload = multer({ storage: storage });
+  console.log("Server input, storage: ", storage);
+
+  return multer({ storage: storage });
+}
 
 module.exports = {
     // Get all galleries
@@ -64,21 +70,21 @@ module.exports = {
       if (!req.files || req.files.length === 0) {
           return res.status(400).json({ message: 'No files were uploaded' });
       }
-  
+    
       // Construct file paths
-      const fileUrls = req.files.map(file => `${req.protocol}://${req.get('host')}/images/${file.filename}`);
-  
+      const fileUrls = req.files.map(file => `${url}${file.filename}`);
+    
       // Create gallery object
       const galleryData = {
           ...req.body,
           pics: fileUrls // Store the file paths in the database
       };
-  
+    
       // Save gallery to the database
       Gallery.create(galleryData)
           .then((gallery) => res.json(gallery))
           .catch((err) => res.status(500).json(err));
-  },
+    },
 
     // Delete a gallery
     deleteGallery(req, res) {   

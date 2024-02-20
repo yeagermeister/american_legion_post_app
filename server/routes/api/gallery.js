@@ -1,4 +1,5 @@
 const router = require('express').Router();
+const multer = require('../../helpers/multer');
 
 const {
   getGalleries,
@@ -10,10 +11,13 @@ const {
   removeReaction,
 } = require('../../controllers/galleryController');
 
+
+
+
 // /api/gallery
 router.route('/')
 .get(getGalleries)
-.post(createGallery); 
+router.post('/', multer.array('pics'), createGallery);
 
 // /api/gallery/:galleryId
 router.route('/:galleryId')

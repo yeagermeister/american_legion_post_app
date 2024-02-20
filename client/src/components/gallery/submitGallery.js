@@ -1,5 +1,6 @@
 import {Form, Button, Alert} from 'react-bootstrap';
 import {useState} from 'react';
+import axios from 'axios';
 import {createGallery} from '../../utils/API';
 
 function SubmitGallery(props) {
@@ -29,9 +30,19 @@ function SubmitGallery(props) {
             for (let [key, value] of formData.entries()) {
                 console.log(key, value);
             }
-            const response = await createGallery(formData);
-            console.log('Gallery item created', response);
-    
+
+            try {
+                const response = await axios.post(`http://localhost:3001/api/gallery`, formData, {
+                    headers: {
+                        'Content-Type': 'multipart/form-data'
+                    }
+                });
+                console.log(response);
+                console.log('Gallery item created', response);
+            } catch (error) {
+                console.error(error);
+            }
+
             setGalleryFormData({
                 title: '',
                 date: '',

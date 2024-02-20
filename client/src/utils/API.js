@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 const API_URL = 'https://post291.org';
+// const API_URL = 'http://localhost:3001';
 
 // User related API calls
 export const getMemberId = (memberId) => {
@@ -72,13 +73,22 @@ export const getGallery = () => {
   return axios.get(`${API_URL}/api/gallery`);
 };
 
-export const createGallery = (galleryData) => {
-  return axios.post(`${API_URL}/api/gallery`, galleryData, {
-  });
+export const createGallery = async (galleryData) => {
+  console.log("API: ", galleryData);
+  try {
+    const response = await axios.post(`${API_URL}/api/gallery`, galleryData, {
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      }
+    });
+    console.log(response);
+  } catch (error) {
+    console.error(error.response);
+  }
 };
 
 export const updateGallery = (galleryData) => {
-  console.log("API: ", galleryData);
+
   return axios.put(`${API_URL}/api/gallery/${galleryData.id}`, galleryData);
 };
 
