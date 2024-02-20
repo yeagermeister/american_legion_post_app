@@ -6,6 +6,7 @@ const fs = require('fs');
 
 const dir = `/var/www/post291.org/images/`;
 
+
 if (!fs.existsSync(dir)){
     fs.mkdirSync(dir, { recursive: true });
 };
@@ -15,6 +16,9 @@ const storage = multer.diskStorage({
     cb(null, dir) // Use the absolute path
   },
   filename: function (req, file, cb) {
+    console.log("Server input in filename function, file: ", file);
+    console.log("Server input, in filename function, req.body: ", req); 
+    console.log("Server input, in filename function, req.files: ", req.files);
     const title = file.originalname.replace(/\s/g, '_'); // Replace spaces with underscores
     const filename = title + '-' + Date.now() + path.extname(file.originalname); //Appending extension
     cb(null, filename)
