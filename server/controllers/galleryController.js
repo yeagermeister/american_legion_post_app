@@ -59,17 +59,26 @@ module.exports = {
             });
     },
     // create a new gallery
-    createGallery: [upload.array('pics'), (req, res) => {
-      console.log("Made it to submit");
-
+    createGallery: (req, res) => {
+      // Check if files were uploaded successfully
+      if (!req.files || req.files.length === 0) {
+          return res.status(400).json({ message: 'No files were uploaded' });
+      }
+  
+      // Construct file paths
+      const fileUrls = req.files.map(file => `${req.protocol}://${req.get('host')}/images/${file.filename}`);
+  
+      // Create gallery object
       const galleryData = {
-        ...req.body,
-        pics: req.files.map(file => `${req.protocol}://${req.get('host')}/images/` + file.filename), // Store the file paths in the database
+          ...req.body,
+          pics: fileUrls // Store the file paths in the database
       };
+  
+      // Save gallery to the database
       Gallery.create(galleryData)
-        .then((gallery) => res.json(gallery))
-        .catch((err) => res.status(500).json(err));
-    }],
+          .then((gallery) => res.json(gallery))
+          .catch((err) => res.status(500).json(err));
+  }
 
     // Delete a gallery
     deleteGallery(req, res) {   
