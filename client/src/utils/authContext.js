@@ -40,7 +40,6 @@ export const AuthProvider = ({ children }) => {
       // Try to decode the token. If it's not valid, an error will be thrown
       decode(idToken);
       localStorage.setItem('id_token', idToken);
-      console.log(idToken);
       setIsLoggedIn(true);
     } catch (err) {
       console.error('Invalid token', err);

@@ -3,7 +3,6 @@ import { Container, Row, Col } from "react-bootstrap";
 import Weather from "../components/externalApis/weather";
 import Tides from "../components/externalApis/tides";
 
-// import HomeCarousel from "../components/carousel";
 
 const home = () => {
     return (
@@ -22,13 +21,13 @@ const home = () => {
             </Row>
             <Row>
                 <Col xs={12} lg={4}>
-                    <h1>Home</h1>
+                    <h1></h1>
                 </Col>
                 <Col xs={12} lg={4}>
-                    <h1>Home</h1>
+                    <h1></h1>
                 </Col>
                 <Col xs={12} lg={4}>
-                    <h1>Home</h1>
+                    <h1></h1>
                 </Col>
             </Row>
         </Container>

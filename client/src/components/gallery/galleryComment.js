@@ -50,7 +50,7 @@ const GalleryComment = ({ id, onGalleryUpdate }) => {
         {auth.loggedIn() ? (
             <>
                 <Button variant='secondary' onClick={() => handleComment(commentItem)}>Leave a comment</Button>
-                  <Modal show={showModal} onHide={{handleClose}}>
+                  <Modal show={showModal} onHide={handleClose}>
                     <Modal.Header closeButton>
                       <Modal.Title>Leave a comment</Modal.Title>
                     </Modal.Header>

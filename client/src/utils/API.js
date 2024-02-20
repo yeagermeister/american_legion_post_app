@@ -81,7 +81,8 @@ export const createGallery = (galleryData) => {
 };
 
 export const updateGallery = (galleryData) => {
-  return axios.put(`${API_URL}/api/gallery/${galleryData._id}`, galleryData);
+  console.log("API: ", galleryData);
+  return axios.put(`${API_URL}/api/gallery/${galleryData.id}`, galleryData);
 };
 
 export const deleteGallery = (id) => {
