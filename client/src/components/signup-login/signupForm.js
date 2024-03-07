@@ -4,8 +4,6 @@ import { createUser } from "../../utils/API";
 import { AuthContext } from '../../utils/authContext';
 import { useNavigate } from 'react-router-dom';
 
-// import { propTypes } from 'react-bootstrap/esm/Image';
-
 const SignupForm = (props) => {
     const { member } = props;
      // set initial form state

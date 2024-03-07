@@ -4,7 +4,7 @@ import React from "react";
 import Collapsible from "react-collapsible";
 import Specials from "../components/menu/specials";
 import CreateSpecial from "../components/menu/createSpecial";
-import { entrees, sides } from "../utils/vars";
+import { entrees, sides, dinner } from "../utils/vars";
 import ListGroup from 'react-bootstrap/ListGroup';
 import { Row, Col } from 'react-bootstrap'; 
 import { AuthContext } from "../utils/authContext";
@@ -66,6 +66,23 @@ const Menu = () => {
               <ListGroup.Item as="li" className="w-50 w-md-auto">{side.price.toFixed(2)}</ListGroup.Item>
             </ListGroup>
             ))}
+        </Col>
+      </Row>
+      <h1 className="text-center">Sons' Back Porch Menu</h1>
+      <h3 className="text-center">Thursday & Friday 6-9 PM</h3>
+      <Row>
+        <Col md={6}>
+          <ListGroup horizontal="md" className="my-3">
+            <ListGroup.Item as="li" className="w-50 w-md-auto">Item</ListGroup.Item>
+            <ListGroup.Item as="li" className="w-50 w-md-auto">Price</ListGroup.Item>
+          </ListGroup>
+          {dinner.map((item, index) => (
+          <ListGroup key={index} horizontal="md" className="my-1">
+           <ListGroup.Item as="li" className="w-50 w-md-auto">{item.name}</ListGroup.Item>
+            <ListGroup.Item as="li" className="w-50 w-md-auto">{item.price.toFixed(2)}</ListGroup.Item> 
+          </ListGroup>
+          ))}
+          <h5 className="text-center">Takeout: Call 850-464-2030 (Brenda)</h5>
         </Col>
       </Row>
 

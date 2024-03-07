@@ -82,13 +82,13 @@ export const createGallery = async (galleryData) => {
       }
     });
     console.log(response);
+    return response;
   } catch (error) {
     console.error(error.response);
   }
 };
 
 export const updateGallery = (galleryData) => {
-
   return axios.put(`${API_URL}/api/gallery/${galleryData.id}`, galleryData);
 };
 

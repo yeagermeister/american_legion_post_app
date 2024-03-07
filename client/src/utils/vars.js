@@ -22,4 +22,12 @@ const sides = [
     {name: "Chips", price:1}
 ];
 
-export {post_number, entrees, sides};
+const dinner = [
+    {name: "Corn Dog", price:3},
+    {name: "10 pc. Wings w/ Fries (Sweet Heat, Teriyakia, Buffalo)", price:12},
+    {name: "1/4 lb. Burger w/ Fries", price:7},
+    {name: "Chicken Strips w/ Fries", price:8},
+    {name: "French Fries", price:3}
+];
+
+export {post_number, entrees, sides, dinner};

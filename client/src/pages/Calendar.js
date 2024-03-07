@@ -31,6 +31,7 @@ const Calendar = () => {
         fetchCalendar();
     }, []);
 
+    console.log("Calendar: ", calendar);
     return (
         <Row>
             <h1>Calendar</h1>
