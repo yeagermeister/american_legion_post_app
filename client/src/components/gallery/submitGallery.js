@@ -2,6 +2,7 @@ import {Form, Button, Alert} from 'react-bootstrap';
 import {useState} from 'react';
 import axios from 'axios';
 import {createGallery} from '../../utils/API';
+import { responsivePropType } from 'react-bootstrap/esm/createUtilityClasses';
 
 function SubmitGallery(props) {
     const [galleryFormData, setGalleryFormData] = useState({
@@ -27,16 +28,8 @@ function SubmitGallery(props) {
         });
 
         try {
-            for (let [key, value] of formData.entries()) {
-                console.log(key, value);
-            }
-
             try {
-                const response = await axios.post(`http://localhost:3001/api/gallery`, formData, {
-                    headers: {
-                        'Content-Type': 'multipart/form-data'
-                    }
-                });
+                const response = await createGallery(formData);
                 console.log(response);
                 console.log('Gallery item created', response);
             } catch (error) {
