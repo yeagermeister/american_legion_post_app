@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { getTides } from "../../../utils/API";
+import { getTides } from "../../utils/API";
 import { Card, Container } from "react-bootstrap";
 
 const Tides = () => {

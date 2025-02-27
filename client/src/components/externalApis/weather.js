@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { getWeather } from "../../../utils/API";
+import { getWeather } from "../../utils/API";
 import { Card, Container } from "react-bootstrap";
 
 const Weather = () => {
