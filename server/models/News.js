@@ -17,8 +17,9 @@ const newsSchema = new Schema(
             required: true,
             default: Date.now,
         },
-        pic1: {
-            type: String,
+        frontPage: {
+            type: Boolean,
+            default: false,
         },
     },
     {

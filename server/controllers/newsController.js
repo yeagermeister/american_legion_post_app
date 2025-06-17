@@ -34,7 +34,20 @@ module.exports = {
     },
     //Create an Article
     createNews(req, res) {
-        News.create(req.body)
+        const newsData = req.body;
+
+        // If this news article is marked for front page, unset any existing front page article
+        const createArticle = async () => {
+            if (newsData.frontPage) {
+                await News.updateMany(
+                    { frontPage: true },
+                    { $set: { frontPage: false } }
+                );
+            }
+            return News.create(newsData);
+        };
+
+        createArticle()
             .then((news) => res.json(news))
             .catch((err) => res.status(500).json(err));
     },
@@ -50,10 +63,27 @@ module.exports = {
     },
     //Update an Article
     updateNews(req, res) {
-        News.findOneAndUpdate({ _id: req.params.newsId }, req.body, {
-            new: true,
-            runValidators: true,
-        })
+        const updates = req.body;
+
+        // If this update includes setting front page to true, handle it
+        const updateArticle = async () => {
+            if (updates.frontPage) {
+                await News.updateMany(
+                    { _id: { $ne: req.params.newsId }, frontPage: true },
+                    { $set: { frontPage: false } }
+                );
+            }
+            return News.findOneAndUpdate(
+                { _id: req.params.newsId },
+                updates,
+                {
+                    new: true,
+                    runValidators: true,
+                }
+            );
+        };
+
+        updateArticle()
             .then((news) =>
                 !news
                     ? res.status(404).json({ message: 'No such news exists' })
