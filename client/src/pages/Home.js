@@ -21,7 +21,7 @@ const home = () => {
             </Row>
             <Row>
                 <Col xs={12} lg={4}>
-                  <h1><a href="https://post291.org/aup.html" target="_blank" rel="noopener noreferrer">Acceptable Use Policy</a></h1>  
+                  <h1><a href="https://post291.org/privacy.html" target="_blank" rel="noopener noreferrer">Privacy Policy</a></h1>  
                 </Col>
                 <Col xs={12} lg={4}>
                     <h1></h1>
