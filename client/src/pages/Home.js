@@ -16,12 +16,12 @@ const home = () => {
                     <Tides />
                 </Col>
                 <Col xs={12} lg={4}>
-                    <h1>Home</h1>
+                    <h1></h1>
                 </Col>
             </Row>
             <Row>
                 <Col xs={12} lg={4}>
-                  <h1><a href="https://post291.org/privacy.html" target="_blank" rel="noopener noreferrer">Privacy Policy</a></h1>  
+                  <a href="https://post291.org/privacy.html" target="_blank" rel="noopener noreferrer">Privacy Policy</a>
                 </Col>
                 <Col xs={12} lg={4}>
                     <h1></h1>
