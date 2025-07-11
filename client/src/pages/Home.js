@@ -24,7 +24,7 @@ const home = () => {
                   <a href="https://post291.org/privacy.html" target="_blank" rel="noopener noreferrer">Privacy Policy</a>
                 </Col>
                 <Col xs={12} lg={4}>
-                    <h1></h1>
+                    <a href="https://post291.org/csae.html" target="_blank" rel="noopener noreferrer">CSAE Policy</a>
                 </Col>
                 <Col xs={12} lg={4}>
                     <h1></h1>
