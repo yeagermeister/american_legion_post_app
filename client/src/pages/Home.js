@@ -27,7 +27,7 @@ const home = () => {
                     <a href="https://post291.org/csae.html" target="_blank" rel="noopener noreferrer">CSAE Policy</a>
                 </Col>
                 <Col xs={12} lg={4}>
-                    <p>Have a question or need support?  Contact <a href="mailto:johnyeager75@gmail.com">John Yeager</a></p>
+                    <p>Have a question or need support on the webpage or the post app?  Contact <a href="mailto:johnyeager75@gmail.com">John Yeager</a></p>
                 </Col>
             </Row>
         </Container>
