@@ -22,7 +22,6 @@ const home = () => {
             <Row>
                 <Col xs={12} lg={4}></Col>
                 <Col xs={12} lg={4}>
-                    <a href="https://post291.org/privacy.html" target="_blank" rel="noopener noreferrer">Privacy Policy</a>
                 </Col>
                 <Col xs={12} lg={4}></Col>
             </Row>
@@ -33,9 +32,7 @@ const home = () => {
                 <Col xs={12} lg={4}>
                     <a href="https://post291.org/csae.html" target="_blank" rel="noopener noreferrer">CSAE Policy</a>
                 </Col>
-                <Col xs={12} lg={4}>
-                    <p>Have a question or need support on the webpage or the post app?  Contact <a href="mailto:johnyeager75@gmail.com">John Yeager</a></p>
-                </Col>
+                <Col xs={12} lg={4}></Col>
             </Row>
             <Row>
                 <Col xs={12} lg={4}></Col>
