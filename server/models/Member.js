@@ -21,6 +21,11 @@ const memberSchema = new Schema(
             // Using regex to validate an email address
             match: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
           },
+        post: {
+            type: String,
+            match: /^[A-Z]{2}\d{4}$/,
+            required: true,
+        },
     },
     {
         toJSON: {

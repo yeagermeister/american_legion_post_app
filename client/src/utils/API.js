@@ -1,7 +1,7 @@
 import axios from 'axios';
 
-const API_URL = 'https://post291.org';
-// const API_URL = 'http://localhost:3001';
+// const API_URL = 'https://post291.org';
+const API_URL = 'http://localhost:3001';
 
 // User related API calls
 export const getMemberId = (memberId) => {
